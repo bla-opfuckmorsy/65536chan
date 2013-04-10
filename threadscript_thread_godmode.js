@@ -124,6 +124,7 @@ function decodePost(jsonObj,setID)
 		htmlstring += "  No.<span id=\"pnspan_"+jsonObj.postnum+"\">";
 		htmlstring += jsonObj.postnum;
 		htmlstring += "</span>";
+		htmlstring += genEditPanel(jsonObj.postnum, false);
 		for(reply in jsonObj.replysfrom)
 		{
 			htmlstring += " <span style=\"font-size:small;color:#0000ff;\" onclick=\"gotoPost("+jsonObj.replysfrom[reply]+")\" onmouseover=\"hoverPost("+jsonObj.replysfrom[reply]+", event)\" onmouseout=\"unhoverPost()\">&gt;&gt;"+jsonObj.replysfrom[reply]+"</span>";
@@ -150,6 +151,7 @@ function decodePost(jsonObj,setID)
 		htmlstring += "  No.<span id=\"pnspan_"+jsonObj.postnum+"\">";
 		htmlstring += jsonObj.postnum;
 		htmlstring += "</span>";
+		htmlstring += genEditPanel(jsonObj.postnum, true);
 		for(reply in jsonObj.replysfrom)
 		{
 			htmlstring += " <span style=\"font-size:small;color:#0000ff;\" onclick=\"gotoPost("+jsonObj.replysfrom[reply]+")\" onmouseover=\"hoverPost("+jsonObj.replysfrom[reply]+", event)\" onmouseout=\"unhoverPost()\">&gt;&gt;"+jsonObj.replysfrom[reply]+"</span>";
@@ -167,6 +169,18 @@ function decodePost(jsonObj,setID)
 	}
 	
 	return htmlstring;
+}
+
+function genEditPanel(postnum, isOP)
+{
+	var ret = "  <span style=\"border:2px solid red\" >";
+	if(isOP)
+	{
+		ret += "<img src=\"Placeholder.png\" onclick=\"deleteThreadRequest("+postnum+")\" />";
+	}
+	ret += "</span>";
+	
+	return ret;
 }
 
 function updatePosts()
@@ -212,3 +226,4 @@ function updatePosts()
 	
 	return false;
 }
+

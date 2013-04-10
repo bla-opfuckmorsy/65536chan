@@ -12,7 +12,19 @@
 			}
 		</style>
 		<script src="threadscript_common.js"></script>
-		<script src="threadscript_board_main.js"></script>
+		<?php
+			require "login.php";
+			session_start();
+			
+			if(checkLogged())
+			{
+				echo "<script src=\"threadscript_godmode.js\"></script>";
+				echo "<script src=\"threadscript_board_main_godmode.js\"></script>";
+			} else
+			{
+				echo "<script src=\"threadscript_board_main.js\"></script>";
+			}
+		?>
 	</head>
 	<body bgcolor="#808080" onload="updatePosts()">
 		[b / test ]

@@ -104,9 +104,6 @@ function savePost_Mongo($threadtopic, $postArray)
 	//Generate the thread data
 	$threaddoc = array('threadnum' => $postArray['postnum'],
 		'topic' => $threadtopic,
-		'lastposttime' => time(),
-		'numposts' => 1,
-		'averagepostdelay' => 0,
 		'posts' => array($postArray['postnum'] => $postArray));
 	
 	$GLOBALS['board']->save($threaddoc);

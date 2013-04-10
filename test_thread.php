@@ -13,10 +13,19 @@
 			
 		</style>
 		<?php
+			require "login.php";
+			session_start();
+			
+			if(checkLogged())
+			{
+				echo "<script src=\"threadscript_thread_godmode.js\"></script>";
+			} else
+			{
+				echo "<script src=\"threadscript_thread.js\"></script>";
+			}
 			echo "<script> var threadnumber = ".$_REQUEST['threadnum'].";</script>";
 		?>
 		<script src="threadscript_common.js"></script>
-		<script src="threadscript_thread.js"></script>
 	</head>
 	<body bgcolor="#808080" onload="updatePosts()">
 		[b / <a href="test.php">test</a> ]

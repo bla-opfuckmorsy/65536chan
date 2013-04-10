@@ -5,8 +5,9 @@ function deleteThread($threadnum, $boardname)
 	$board = $mongo->selectDB("chan")->selectCollection($boardname);
 	
 	$thread = $board->findOne(array('threadnum' => $threadnum));
+	error_log('$thread is: '.var_export($thread, true));
 	
-	$threadPosts = $threadDoc['posts'];
+	$threadPosts = $thread['posts'];
 
 	//Make sure the files from the thread's posts are also removed from the server
 	foreach($threadPosts as $post)
